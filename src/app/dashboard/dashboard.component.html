@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row" *ngIf = "loggedInUser">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">My lists i voted on</h4>
+                        <p class="card-category">A list of all all the lists you voted on</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+
+                                    </th>
+                                    <th>
+                                        title
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Owner
+                                    </th>
+                                </thead>
+                                <tr *ngFor="let list of votedlists" >
+                                    <td><a href="{{list.image}}"></a></td>
+                                    <td  (click)="detailCustomer(customer.id)" style="cursor:pointer">{{list.title}}</td>
+                                    <td  (click)="detailCustomer(customer.id)" style="cursor:pointer">{{list.Description}}</td>
+                                    <td (click)="detailCustomer(customer.id)" style="cursor:pointer">{{list.Owner.username}}</td>
+                                    <td><button  mat-raised-button  class="btn btn-danger" (click)="removeList(list.id)">delete</button></td>
+                                </tr>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title ">All the lists</h4>
+                            <p class="card-category">An overview of all the lists</p>
+                        </div>
+                        <div class="card-body">
+                            <button mat-raised-button type="submit" class="btn btn-info" (click)="addList()">Make new list</button>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <th width="200">
+    
+                                        </th>
+                                        <th>
+                                            title
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Owner
+                                        </th>
+                                    </thead>
+                                    <tr *ngFor="let list of lists" >
+                                        <td width="200" ><img src="{{list.image}}"  width="200" /></td>
+                                        <td  (click)="detailList(list)" style="cursor:pointer">{{list.title}}</td>
+                                        <td  (click)="detailList(list)" style="cursor:pointer">{{list.description}}</td>
+                                        <td (click)="detailList(list)" style="cursor:pointer">{{list.owner.username}}</td>
+                                        <td *ngIf = "loggedInUser"  ><button *ngIf="list.owner.id === loggedInUser.id"   mat-raised-button  class="btn btn-danger" (click)="removeList(list.id)">delete</button></td>
+                                    </tr>
+                                    <tbody> 
+    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title ">detail page of {{listDetail.title}}</h4>
+            
+          </div>
+          <div class="card-body">
+              <p style="cursor:pointer" *ngIf = "!edit" (click)="edit = true">edit</p>
+              
+            <p class="btn-danger">{{error}}</p>
+              <div class="row" *ngIf = "!edit">
+                  <div class="col-md-12 example-full-width">
+                     <img width="400px" src={{listDetail.image}}>
+                </div> 
+                  <div class="col-md-12 example-full-width">
+                          description : {{listDetail.description}}
+                    </div>
+                    <div class="col-md-12 example-full-width">
+                          owner: {{listDetail.owner.username}}
+                    </div> 
+                    <div class="card-body">
+                    <div class="card-header card-header-info">
+                      Items
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>
+                                    title
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    votes
+                                </th>
+                            </thead>
+                            <tr *ngFor="let item of listDetail.items" >
+                                <td   style="cursor:pointer">{{item.title}}</td>
+                                <td   style="cursor:pointer">{{item.Description}}</td>
+                                <td   style="cursor:pointer">{{item.votes.count}}</td>
+                                <td><p  class="btn btn-info" (click)="voteItem(item.id)">Vote</p></td>
+                            </tr>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+              </div>
+
+
+            <form  (ngSubmit) = "savelist()" *ngIf = "edit">
+              <div class="row">
+                  <div class="col-md-12 example-full-width">
+                      <img width="400px" src={{listDetail.image}}/>
+                 </div> 
+                  <div class="col-md-12 example-full-width">
+                          <input matInput placeholder="{{listDetail.title}}" name="title" [(ngModel)]="listDetail.title">
+                    </div>
+                    <div class="col-md-12 example-full-width">
+                          <input matInput placeholder="{{listDetail.description}}" name="description" [(ngModel)]="listDetail.description">
+                    </div>
+                    <div class="col-md-12 ">
+                          <input  matInput placeholder="image" name="image"  [(ngModel)]="listDetail.image" >
+                      </div>  
+              </div>
+
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead class=" text-primary">
+                        <th></th>
+                          <th>
+                              title
+                          </th>
+                          <th>
+                              Description
+                          </th>
+                          <th>
+                              votes
+                          </th>
+                      </thead>
+                      <tr *ngFor="let item of listDetail.items" >
+                        <td></td>
+                          <td  (click)="detailCustomer(customer.id)" style="cursor:pointer">{{item.title}}</td>
+                          <td  (click)="detailCustomer(customer.id)" style="cursor:pointer">{{item.description}}</td>
+                          <td  (click)="detailCustomer(customer.id)" style="cursor:pointer">{{item.votes.length}}</td>
+                          <td><p  class="btn btn-info" (click)="voteItem(item.id)">Vote</p></td>
+                      </tr>
+                        <tr>
+                          <td><p class="btn" (click) = "addItem()">+</p></td>
+                          <td> <input matInput placeholder="Title" name="title" [(ngModel)]="newitemtitle"></td>
+                          <td> <input matInput placeholder="description" name="description" [(ngModel)]="newitemdescription"></td>
+                        </tr>
+                      <tbody>
+
+                      </tbody>
+                  </table>
+              </div>
+              <button mat-raised-button class="btn btn-info" type="submit" class="btn btn-info">Save</button>
+            </form>
+          </div>
+
+          
+        </div>

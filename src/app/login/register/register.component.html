@@ -1,0 +1,26 @@
+
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title ">Create new customer</h4>
+          </div>
+          <div class="card-body">
+            <p class="btn-danger">{{error}}</p>
+            <form #user = "ngForm" (ngSubmit) = "Register(user.value)" >
+              <div class="row">
+                  <div class="col-md-12 example-full-width">
+                          <input matInput placeholder="username" name="username" ngModel>
+                    </div>
+                    <div class="col-md-12 example-full-width">
+                      <input matInput placeholder="email" name="email" ngModel>
+                    </div>
+                    <div class="col-md-12 password">
+                            <input type="password" matInput placeholder="password" name="password" [(ngModel)]= "password" ngModel >
+                      </div>  
+                      <div class="col-md-12 password">
+                        <input type="password" matInput placeholder="confirm password" name="confirmPassword" [(ngModel)]="confirmPassword">
+                  </div>  
+              </div>
+              <button  [disabled]="password !== confirmPassword" [disabled]= "password == ''" mat-raised-button class="btn btn-info" type="submit" class="btn btn-info">Register</button>
+            </form>
+          </div>
+        </div>

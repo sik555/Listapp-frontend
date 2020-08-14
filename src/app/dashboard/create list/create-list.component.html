@@ -1,0 +1,23 @@
+
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title ">Create new List</h4>
+          </div>
+          <div class="card-body">
+            <p class="btn-danger">{{error}}</p>
+            <form #list = "ngForm" (ngSubmit) = "createList(list.value)" >
+              <div class="row">
+                  <div class="col-md-12 example-full-width">
+                          <input matInput placeholder="title" name="title" ngModel>
+                    </div>
+                    <div class="col-md-12 example-full-width">
+                      <input matInput placeholder="description" name="description" ngModel>
+                    </div>
+                    <div class="col-md-12 ">
+                            <input  matInput placeholder="image" name="image"  ngModel >
+                      </div>  
+              </div>
+              <button mat-raised-button class="btn btn-info" type="submit" class="btn btn-info">Create</button>
+            </form>
+          </div>
+        </div>
